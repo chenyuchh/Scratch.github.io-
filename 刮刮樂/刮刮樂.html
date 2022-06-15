@@ -5,7 +5,7 @@
   <title>刮刮樂</title>
   <style type="text/css">
    #c1{
-    border: 1px solid blue;
+    border: 1px solid white;
     position: absolute;
    }
    
@@ -20,13 +20,13 @@
  </head>
  <body>
  <div id="test">
-   <canvas width="100" height="100"></canvas>
+   <canvas width="80" height="80"></canvas>
 </div>
   <div style = "text-align:center;">
-  <canvas id="c1" width="500" height="500"></canvas>
+  <canvas id="c1" width="80" height="80"></canvas>
   
   
-  <canvas id="c2" width="500" height="500"></canvas>
+  <canvas id="c2" width="80" height="80"></canvas>
   
  </body>
  <script type="text/javascript">
@@ -41,16 +41,16 @@
   var imgs = new Image();
   imgs.src = 'qrcode.png';
   imgs.onload = function(){
-   ctx2.drawImage(this,0,0,500,500)
+   ctx2.drawImage(this,0,0,80,80)
   }
   
   // 塗層繪制到頂層(即覆蓋膜)  canvas1
-  ctx1.fillStyle = "#2152A3";                   //BG CO
-  ctx1.fillRect(0,0,500,500);
-  
-  ctx1.font = "normal 80px 仿宋";   
-  ctx1.strokeStyle = "33C4FF";   			//WORD CO
-  ctx1.strokeText("",110,260);
+  var grd = ctx1.createLinearGradient(0,0,80,80);
+grd.addColorStop(0,"white");
+grd.addColorStop(1,"#2152A3");
+// Fill with gradient
+ctx1.fillStyle = grd;
+ctx1.fillRect(0,0,80,80);
   
   // 監聽canvas的onmousedown事件
   c1.onmousedown = function(ev){
@@ -65,11 +65,10 @@
   }
   c1.onmouseup = function(ev){
   // 取消onmousemove事件
-  c1.onmousemove = null;
-  }
+  c1.onmousemove = null;         //
+  }                              //
 
  </script>
 </html>
-
 
 
